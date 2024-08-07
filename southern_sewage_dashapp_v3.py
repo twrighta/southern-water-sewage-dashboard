@@ -116,8 +116,8 @@ dropdown_style = {"background": colours["contrasting_background"],
 app = Dash(__name__,
            suppress_callback_exceptions=True,
            external_stylesheets=[dbc.themes.BOOTSTRAP])
-server = app.server
 
+server = app.server
 # Defining app layout #
 
 # Whole page div
@@ -512,13 +512,14 @@ def update_cp_boxplot(county, year):
         county_title = county[0].strip("[\'").strip("\']")
     if isinstance(year, int):
         year = [year]
+        tidied_year = str(year).strip("[\'").strip("\']").strip()
     filtered_df = df[(df["County"].isin(county)) & (df["Year"].isin(year))]
 
     filtered_box = px.box(data_frame=filtered_df,
                           x="Type",
                           y="Duration_Mins",
                           color="Type",
-                          title=f"{county_title} - Sewage Overflow Duration by Type - {str(year).strip("[\'").strip("\']")}",
+                          title=f"{county_title} - Sewage Overflow Duration by Type - {tidied_year}",
                           color_discrete_sequence=colours_sequence,
                           color_discrete_map=type_colour_map)
     filtered_box.update_yaxes(title_text = "Duration (mins)")
