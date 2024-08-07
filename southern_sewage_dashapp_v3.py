@@ -6,6 +6,7 @@ from dash.dependencies import Input, Output
 import plotly_express as px
 import numpy as np
 import dash_bootstrap_components as dbc
+import gunicorn
 
 # Read in dataset and process useful columns:
 df = pd.read_csv("C:/Users/tomwr/Datascience/Datasets/Tabular/southern_water_spills/southern_water_spills_2017_2023.csv",
