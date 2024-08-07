@@ -663,6 +663,7 @@ def update_sp_sewage_timeperiod_line(site, timeperiod):
 )
 def update_sp_boxplot(year, site):
     filtered_df = df[(df["Year"] == year) & (df["Site"] == site)]
+    tidied_site = site.strip("[\'").strip("\']").strip()
 
     if filtered_df.empty:
         failed_box = px.box(title=f"No data for {site} in {year}")
@@ -681,7 +682,7 @@ def update_sp_boxplot(year, site):
                         x="Type",
                         y="Duration_Mins",
                         color="Type",
-                        title=f"{site.strip("[\'").strip("\']")} Sewage Overflow Duration by Type - {str(year)}",
+                        title=f"{tidied_site} Sewage Overflow Duration by Type - {str(year)}",
                         color_discrete_sequence=colours_sequence,
                         color_discrete_map=type_colour_map)
         sp_box.update_yaxes(title_text = "Duration (mins)")
