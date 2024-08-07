@@ -116,6 +116,7 @@ dropdown_style = {"background": colours["contrasting_background"],
 app = Dash(__name__,
            suppress_callback_exceptions=True,
            external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 # Defining app layout #
 
